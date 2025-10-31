@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MediCare Hub - Dr. Ali Waqar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    .active-link { color: #facc15; font-weight: bold; }
+    #backToTop { display: none; }
+    /* Modal base - hidden by default */
+    .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:60; }
+    .modal-card { background: white; padding: 1.25rem; border-radius: 0.75rem; width: 100%; max-width: 420px; box-shadow: 0 10px 30px rgba(2,6,23,0.2); }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 scroll-smooth">
+
+<!-- Navbar -->
+<header class="bg-blue-900 text-white shadow-md sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto flex justify-between items-center py-4 px-6">
+    <h1 class="text-2xl font-bold">MediCare Hub</h1>
+    <nav class="hidden md:flex space-x-6 items-center">
+      <a href="#hero" class="nav-link">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#blog" class="nav-link">Blog</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <button onclick="openAuthModal('login')" class="bg-yellow-400 text-blue-900 px-3 py-1 rounded hover:bg-yellow-500 transition">Login / Sign Up</button>
+    </nav>
+
+    <!-- Mobile menu button -->
+    <button id="menu-btn" class="md:hidden focus:outline-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile dropdown -->
+  <div id="menu" class="hidden md:hidden bg-blue-800 text-white px-6 pb-4 space-y-3">
+    <a href="#hero" class="block nav-link">Home</a>
+    <a href="#about" class="block nav-link">About</a>
+    <a href="#services" class="block nav-link">Services</a>
+    <a href="#blog" class="block nav-link">Blog</a>
+    <a href="#contact" class="block nav-link">Contact</a>
+    <button onclick="openAuthModal('login')" class="w-full bg-yellow-400 text-blue-900 py-2 rounded hover:bg-yellow-500 transition">Login / Sign Up</button>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section id="hero" class="bg-blue-800 text-white py-28 text-center" data-aos="fade-up">
+  <h2 class="text-4xl font-bold mb-4">Welcome to MediCare Hub</h2>
+  <p class="text-lg mb-4">Trusted healthcare with dedication and compassion.</p>
+  <p class="font-semibold mb-6">Book your consultation today with <span class="text-yellow-300">Dr. Ali Waqar (MBBS)</span></p>
+  <a href="#appointment" class="inline-block bg-yellow-400 text-blue-900 font-semibold px-6 py-3 rounded-lg shadow hover:bg-yellow-500 transition">Book Appointment</a>
+</section>
+
+<!-- About Doctor -->
+<section id="about" class="max-w-6xl mx-auto py-16 px-6" data-aos="fade-right">
+  <h3 class="text-3xl font-bold text-center mb-8 text-blue-900">About Dr. Ali Waqar</h3>
+  <div class="bg-white shadow-md rounded-2xl p-8 flex flex-col md:flex-row items-center gap-8">
+    <img src="doctor.jpg" alt="Dr Ali Waqar" class="w-64 h-64 rounded-xl shadow-md object-cover">
+    <div>
+      <h4 class="text-xl font-bold mb-2">Dr. Ali Waqar (MBBS)</h4>
+      <p class="mb-2">General Practitioner at <b>RHC Rodu Sultan, Tehsil 18 Hazari, District Jhang</b>.</p>
+      <p><strong>Email:</strong> <a href="mailto:aliwaqar.khokhar24@gmail.com" class="text-blue-600">aliwaqar.khokhar24@gmail.com</a></p>
+      <p><strong>Phone:</strong> <a href="tel:03467603853" class="text-blue-600">03467603853</a></p>
+      <p class="mt-2">Providing primary healthcare, consultations, and emergency care with dedication.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="bg-gray-100 py-16" data-aos="fade-left">
+  <div class="max-w-6xl mx-auto px-6">
+    <h3 class="text-3xl font-bold text-center mb-10 text-blue-900">Our Services</h3>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-white shadow-lg rounded-2xl p-6 hover:shadow-2xl transition flex items-center gap-4">
+        <img src="consultation.jpg" class="w-20 h-20 rounded-full object-cover" alt="General Consultation">
+        <div>
+          <h4 class="text-xl font-semibold mb-2">General Consultation</h4>
+          <p>Comprehensive health checkups and consultations for all age groups.</p>
+        </div>
+      </div>
+      <div class="bg-white shadow-lg rounded-2xl p-6 hover:shadow-2xl transition flex items-center gap-4">
+        <img src="emergency.jpg" class="w-20 h-20 rounded-full object-cover" alt="Emergency Management">
+        <div>
+          <h4 class="text-xl font-semibold mb-2">Emergency Management</h4>
+          <p>Quick response and treatment for urgent medical conditions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Tests Section -->
+<section id="tests" class="max-w-6xl mx-auto py-16 px-6" data-aos="fade-up">
+  <h3 class="text-3xl font-bold text-center mb-10 text-blue-900">Featured Tests</h3>
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="bg-white shadow-lg rounded-2xl p-4 text-center hover:shadow-2xl transition">
+      <img src="blood-test.jpg" class="mx-auto mb-2 w-32 h-32 rounded-full object-cover" alt="Blood Test">
+      <h4 class="text-lg font-semibold">Blood Test</h4>
+    </div>
+    <div class="bg-white shadow-lg rounded-2xl p-4 text-center hover:shadow-2xl transition">
+      <img src="xray.jpg" class="mx-auto mb-2 w-32 h-32 rounded-full object-cover" alt="X-Ray Test">
+      <h4 class="text-lg font-semibold">X-Ray</h4>
+    </div>
+    <div class="bg-white shadow-lg rounded-2xl p-4 text-center hover:shadow-2xl transition">
+      <img src="ecg.jpg" class="mx-auto mb-2 w-32 h-32 rounded-full object-cover" alt="ECG Test">
+      <h4 class="text-lg font-semibold">ECG</h4>
+    </div>
+  </div>
+</section>
+
+<!-- Blog / Health Tips Section -->
+<section id="blog" class="bg-gray-100 py-16" data-aos="fade-up">
+  <h3 class="text-3xl font-bold text-center mb-10 text-blue-900">Health Tips & Blog</h3>
+  <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto px-6">
+    <div class="bg-white shadow-lg rounded-2xl p-4 hover:shadow-2xl transition">
+      <img src="healthy-heart.jpg" class="w-full h-40 object-cover rounded-lg mb-4" alt="Healthy Heart">
+      <h4 class="font-semibold mb-2">5 Tips for a Healthy Heart</h4>
+      <p>Learn simple lifestyle changes to keep your heart healthy and active.</p>
+    </div>
+    <div class="bg-white shadow-lg rounded-2xl p-4 hover:shadow-2xl transition">
+      <img src="cold.jpg" class="w-full h-40 object-cover rounded-lg mb-4" alt="Prevent Common Cold">
+      <h4 class="font-semibold mb-2">Prevent Common Cold</h4>
+      <p>Tips and home remedies to avoid catching the flu or common cold.</p>
+    </div>
+    <div class="bg-white shadow-lg rounded-2xl p-4 hover:shadow-2xl transition">
+      <img src="emergency.jpg" class="w-full h-40 object-cover rounded-lg mb-4" alt="Emergency Preparedness">
+      <h4 class="font-semibold mb-2">Emergency Preparedness</h4>
+      <p>How to stay safe and react quickly during medical emergencies.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="max-w-6xl mx-auto py-16 px-6" data-aos="fade-up">
+  <h3 class="text-3xl font-bold text-center mb-8 text-blue-900">Contact Us</h3>
+  <div class="bg-white shadow-md rounded-2xl p-8 text-center space-y-4">
+    <p><strong>Address:</strong> RHC Rodu Sultan, Tehsil 18 Hazari, District Jhang</p>
+    <p><strong>Email:</strong> <a href="mailto:aliwaqar.khokhar24@gmail.com" class="text-blue-600">aliwaqar.khokhar24@gmail.com</a></p>
+    <p><strong>Phone:</strong> <a href="tel:+923001234567" class="text-blue-600">03467603853</a></p>
+    <p><strong>Hours:</strong> Monday - Saturday, 9:00 AM - 6:00 PM</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-blue-900 text-white text-center py-6 mt-10">
+  <p>&copy; 2025 MediCare Hub | Dr. Ali Waqar</p>
+</footer>
+
+<!-- Back to Top -->
+<button id="backToTop" class="fixed bottom-6 right-6 bg-yellow-400 text-blue-900 p-3 rounded-full shadow-lg hover:bg-yellow-500 transition">
+  ↑
+</button>
+
+<!-- AUTH Modal (Login + Signup) -->
+<div id="authModal" class="modal" aria-hidden="true">
+  <div class="modal-card">
+    <div id="authHeader" class="flex items-center justify-between mb-4">
+      <h3 id="authTitle" class="text-xl font-semibold">Login</h3>
+      <button onclick="closeAuthModal()" class="text-gray-600 hover:text-gray-900">&times;</button>
+    </div>
+
+    <!-- Login Form -->
+    <form id="loginForm" class="space-y-3">
+      <div>
+        <label class="text-sm font-medium">Email</label>
+        <input id="loginEmail" type="email" class="w-full border rounded px-3 py-2" required>
+      </div>
+      <div>
+        <label class="text-sm font-medium">Password</label>
+        <input id="loginPassword" type="password" class="w-full border rounded px-3 py-2" required>
+      </div>
+      <div>
+        <label class="text-sm font-medium">Role</label>
+        <select id="loginRole" class="w-full border rounded px-3 py-2" required>
+          <option value="">Select Role</option>
+          <option value="patient">Patient</option>
+          <option value="doctor">Doctor</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+      <button type="submit" class="w-full bg-blue-900 text-white px-4 py-2 rounded">Login</button>
+      <p class="text-sm text-center">Don't have an account? <button type="button" onclick="showSignup()" class="text-blue-600 underline">Sign up</button></p>
+    </form>
+
+    <!-- Signup Form -->
+    <form id="signupForm" class="space-y-3 hidden">
+      <div>
+        <label class="text-sm font-medium">Full Name</label>
+        <input id="signupName" type="text" class="w-full border rounded px-3 py-2" required>
+      </div>
+      <div>
+        <label class="text-sm font-medium">Email</label>
+        <input id="signupEmail" type="email" class="w-full border rounded px-3 py-2" required>
+      </div>
+      <div>
+        <label class="text-sm font-medium">Password</label>
+        <input id="signupPassword" type="password" class="w-full border rounded px-3 py-2" required>
+      </div>
+      <div>
+        <label class="text-sm font-medium">Role</label>
+        <select id="signupRole" class="w-full border rounded px-3 py-2" required>
+          <option value="">Select Role</option>
+          <option value="patient">Patient</option>
+          <option value="doctor">Doctor</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+      <button type="submit" class="w-full bg-green-600 text-white px-4 py-2 rounded">Sign Up</button>
+      <p class="text-sm text-center">Already registered? <button type="button" onclick="showLogin()" class="text-blue-600 underline">Login</button></p>
+    </form>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+
+  // Mobile menu toggle
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('menu');
+  if (btn) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+
+  // Scroll highlight for navbar links
+  const sections = document.querySelectorAll("section");
+  const navLinks = document.querySelectorAll(".nav-link");
+  window.addEventListener("scroll", () => {
+    let current = "";
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 80;
+      if (pageYOffset >= sectionTop) current = section.getAttribute("id");
+    });
+    navLinks.forEach(link => {
+      link.classList.remove("active-link");
+      if (link.getAttribute("href") === "#" + current) link.classList.add("active-link");
+    });
+  });
+
+  // Back-to-top
+  const backToTop = document.getElementById("backToTop");
+  window.addEventListener("scroll", () => {
+    backToTop.style.display = window.scrollY > 300 ? "block" : "none";
+  });
+  backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  /* ------------------ AUTH (Login + Signup) ------------------ */
+  const authModal = document.getElementById('authModal');
+  const loginForm = document.getElementById('loginForm');
+  const signupForm = document.getElementById('signupForm');
+  const authTitle = document.getElementById('authTitle');
+
+  function openAuthModal(show='login') {
+    authModal.style.display = 'flex';
+    if (show === 'signup') showSignup(); else showLogin();
+  }
+  function closeAuthModal() { authModal.style.display = 'none'; }
+
+  function showSignup() {
+    loginForm.classList.add('hidden');
+    signupForm.classList.remove('hidden');
+    authTitle.innerText = 'Sign Up';
+  }
+  function showLogin() {
+    signupForm.classList.add('hidden');
+    loginForm.classList.remove('hidden');
+    authTitle.innerText = 'Login';
+  }
+
+  // localStorage users key
+  function getUsers() {
+    try { return JSON.parse(localStorage.getItem('users')) || []; } catch (e) { return []; }
+  }
+  function saveUsers(list) { localStorage.setItem('users', JSON.stringify(list)); }
+
+  // Signup handler
+  signupForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('signupName').value.trim();
+    const email = document.getElementById('signupEmail').value.trim().toLowerCase();
+    const password = document.getElementById('signupPassword').value;
+    const role = document.getElementById('signupRole').value;
+
+    if (!name || !email || !password || !role) { alert('Please fill all fields'); return; }
+
+    const users = getUsers();
+    if (users.find(u => u.email === email)) {
+      alert('Email already registered. Please login.');
+      showLogin();
+      return;
+    }
+
+    users.push({ name, email, password, role });
+    saveUsers(users);
+    alert('Signup successful — please login now.');
+    // Pre-fill login email & role
+    document.getElementById('loginEmail').value = email;
+    document.getElementById('loginRole').value = role;
+    showLogin();
+  });
+
+  // Login handler
+  loginForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+    const password = document.getElementById('loginPassword').value;
+    const role = document.getElementById('loginRole').value;
+
+    if (!email || !password || !role) { alert('Please fill all fields'); return; }
+
+    const users = getUsers();
+    const user = users.find(u => u.email === email && u.password === password && u.role === role);
+
+    if (!user) {
+      alert('Invalid credentials or role. Please check email/password/role.');
+      return;
+    }
+
+    // Save current user so dashboards can read it
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    alert('Login successful. Redirecting to your dashboard...');
+    // Close modal and redirect
+    closeAuthModal();
+
+    if (role === 'patient') window.location.href = 'patient.html';
+    else if (role === 'doctor') window.location.href = 'doctor.html';
+    else if (role === 'admin') window.location.href = 'admin.html';
+  });
+
+  // close modal on outside click
+  window.addEventListener('click', function(e) {
+    if (e.target === authModal) closeAuthModal();
+  });
+
+  // Esc key to close modal
+  window.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeAuthModal();
+  });
+</script>
+</body>
+</html>

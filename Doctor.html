@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Dashboard - MediCare Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Navbar -->
+  <header class="bg-blue-900 text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center py-4 px-6">
+      <h1 class="text-2xl font-bold">Doctor Dashboard</h1>
+      <a href="index.html" class="bg-yellow-400 text-blue-900 px-4 py-1 rounded-lg hover:bg-yellow-500 transition">Logout</a>
+    </div>
+  </header>
+
+  <!-- Dashboard Section -->
+  <section class="max-w-6xl mx-auto py-16 px-6" data-aos="fade-up">
+    <h2 class="text-3xl font-bold mb-8 text-blue-900">Patient Appointments</h2>
+
+    <!-- Appointment Table -->
+    <div class="bg-white shadow-md rounded-2xl p-6 mb-12">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="border-b">
+            <th class="p-2">Patient Name</th>
+            <th class="p-2">Service</th>
+            <th class="p-2">Date</th>
+            <th class="p-2">Status</th>
+            <th class="p-2">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="doctorAppointments">
+          <!-- JS will populate appointments here -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Profile Update Form -->
+    <div class="bg-white shadow-md rounded-2xl p-8">
+      <h3 class="text-2xl font-bold mb-6">Update Profile</h3>
+      <form id="profileForm" class="grid md:grid-cols-2 gap-6">
+        <div>
+          <label class="block text-sm font-medium mb-2">Full Name</label>
+          <input type="text" id="doctorName" class="w-full border rounded-lg px-4 py-2 focus:ring focus:ring-blue-300" value="Dr. Ali Waqar (MBBS)">
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-2">Email</label>
+          <input type="email" id="doctorEmail" class="w-full border rounded-lg px-4 py-2 focus:ring focus:ring-blue-300" value="aliwaqar.khokhar24@gmail.com">
+        </div>
+        <div class="md:col-span-2">
+          <label class="block text-sm font-medium mb-2">Phone</label>
+          <input type="tel" id="doctorPhone" class="w-full border rounded-lg px-4 py-2 focus:ring focus:ring-blue-300" value="+92 300 1234567">
+        </div>
+        <div class="md:col-span-2 text-center">
+          <button type="submit" class="bg-blue-900 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-800 transition">Update Profile</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- JS Logic -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    // Sample appointments data (can be fetched from backend)
+    var appointments = [
+      { name: "Ali Waqar", service: "General Consultation", date: "2025-10-10", status: "Pending" },
+      { name: "Sara Khan", service: "Emergency Management", date: "2025-10-11", status: "Approved" }
+    ];
+
+    var appointmentsTable = document.getElementById("doctorAppointments");
+
+    function renderAppointments() {
+      appointmentsTable.innerHTML = "";
+      appointments.forEach(function(a, index) {
+        var row = document.createElement("tr");
+        row.innerHTML = `
+          <td class="p-2">${a.name}</td>
+          <td class="p-2">${a.service}</td>
+          <td class="p-2">${a.date}</td>
+          <td class="p-2">${a.status}</td>
+          <td class="p-2 flex gap-2">
+            ${a.status !== "Approved" ? '<button class="bg-green-500 text-white px-2 rounded" onclick="approveAppointment(' + index + ')">Approve</button>' : ''}
+            ${a.status !== "Cancelled" ? '<button class="bg-red-500 text-white px-2 rounded" onclick="cancelAppointment(' + index + ')">Cancel</button>' : ''}
+          </td>
+        `;
+        appointmentsTable.appendChild(row);
+      });
+    }
+
+    function approveAppointment(index) {
+      appointments[index].status = "Approved";
+      renderAppointments();
+    }
+
+    function cancelAppointment(index) {
+      appointments[index].status = "Cancelled";
+      renderAppointments();
+    }
+
+    renderAppointments();
+
+    // Profile update logic
+    document.getElementById("profileForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      var nameInput = document.getElementById("doctorName");
+      var emailInput = document.getElementById("doctorEmail");
+      var phoneInput = document.getElementById("doctorPhone");
+
+      var name = nameInput ? nameInput.value : "";
+      var email = emailInput ? emailInput.value : "";
+      var phone = phoneInput ? phoneInput.value : "";
+
+      if(name && email && phone) {
+        alert("Profile updated!\nName: " + name + "\nEmail: " + email + "\nPhone: " + phone);
+      } else {
+        alert("Please fill all fields correctly.");
+      }
+    });
+  </script>
+</body>
+</html>
