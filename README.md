@@ -45,4 +45,14 @@ MediCare Hub is built as a real-client healthcare solution. It focuses on clean 
 - RESTful API structure  
 - Real client–based project architecture  
 
-## 📂 Project Structure
+## Environment Variables
+
+This project uses environment variables to manage configuration such as ports and environment mode.
+
+A .env file is used during development and is intentionally excluded from the GitHub repository using .gitignore for security reasons.
+
+Example .env variables:
+
+PORT=5000  
+NODE_ENV=development  
+PROJECT_NAME=MediCareHub
