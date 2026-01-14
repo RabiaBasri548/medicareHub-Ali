@@ -243,11 +243,9 @@ Frontend and backend are decoupled
 
 API-first approach ensures scalability
 
-Easily extendable to React or Next.js
 
-Designed as a production-ready prototype
-
-Suitable for academic evaluation and real-world use
+Designed and developed for a real medical client
+Actively used as a professional healthcare website
 
 
 
