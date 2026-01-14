@@ -45,14 +45,111 @@ MediCare Hub is built as a real-client healthcare solution. It focuses on clean 
 - RESTful API structure  
 - Real client–based project architecture  
 
-## Environment Variables
+## 📂 Project Structure
+Medicare-Hub/
+│
+├── frontend/
+│   ├── index.html
+│   ├── assets/
+│   │   └── doctor.jpg
+│   └── css/
+│
+├── backend/
+│   ├── server.js
+│   ├── package.json
+│   ├── .env
+│   ├── models/
+│   │   ├── Appointment.js
+│   │   ├── Product.js
+│   │   └── Media.js
+│   ├── routes/
+│   │   ├── appointmentRoutes.js
+│   │   ├── productRoutes.js
+│   │   ├── mediaRoutes.js
+│   ├── controllers/
+│   │   ├── appointmentController.js
+│   │   ├── productController.js
+│   │   └── mediaController.js
+│   └── uploads/
+│
+└── README.md
+📡 API Endpoints
+Appointment Routes
+Method	Endpoint	Description
+POST	/api/appointments	Create new appointment
+GET	/api/appointments	Get all appointments
+GET	/api/appointments/:id	Get appointment by ID
+PUT	/api/appointments/:id	Update appointment
+DELETE	/api/appointments/:id	Delete appointment
+Product Routes
+Method	Endpoint	Description
+POST	/api/products	Create product (with image)
+GET	/api/products	Fetch all products
+PUT	/api/products/:id	Update product
+DELETE	/api/products/:id	Delete product
+Media Routes
+Method	Endpoint	Description
+POST	/api/media/upload	Upload media file
+GET	/api/media	Fetch uploaded media
+🧪 Testing
 
-This project uses environment variables to manage configuration such as ports and environment mode.
+All API endpoints tested using Postman
 
-A .env file is used during development and is intentionally excluded from the GitHub repository using .gitignore for security reasons.
+CRUD operations verified
 
-Example .env variables:
+Valid HTTP status codes returned
 
-PORT=5000  
-NODE_ENV=development  
-PROJECT_NAME=MediCareHub
+MongoDB Atlas connection tested successfully
+
+🔢 HTTP Response Codes
+Code	Meaning
+200	OK
+201	Created
+400	Bad Request
+404	Not Found
+500	Server Error
+⚙️ Setup Instructions (Localhost)
+Frontend
+Open index.html directly in browser
+OR
+Use Live Server extension
+
+Backend
+cd backend
+npm install
+npm start
+
+
+Server runs on:
+
+http://localhost:5000
+
+🔐 Environment Variables (.env)
+PORT=5000
+MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/medicarehub
+
+📌 Notes
+
+Backend architecture follows industry best practices
+
+Frontend and backend are decoupled
+
+API-first approach for scalability
+
+Easily extendable to React or Next.js
+
+Designed as a production-ready prototype
+
+👨‍⚕️ Doctor Information
+
+Name: Dr. Ali Waqar
+
+Qualification: MBBS
+
+Hospital: RHC Rodu Sultan
+
+Location: Tehsil 18 Hazari, District Jhang
+
+Email: aliwaqar.khokhar24@gmail.com
+
+Services: General Consultation, Emergency Management
