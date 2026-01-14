@@ -1,3 +1,5 @@
+//Backend server for medicareHub application
+
 const express = require("express");
 const app = express();
 
